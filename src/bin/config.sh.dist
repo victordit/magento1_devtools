@@ -1,0 +1,9 @@
+#!/bin/bash
+dbhost=
+dbuser=
+dbpass=
+dbname=
+baseurl=
+# optionals fields
+adminuser=
+adminpass=

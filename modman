@@ -1,0 +1,9 @@
+#
+# magento1_devtools v0.1
+#
+
+# install bash tools
+src/bin			bin
+
+# install Easy Path Hints module
+@import 		src/MagePsycho_Easypathhints

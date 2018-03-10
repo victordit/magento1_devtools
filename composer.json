@@ -1,0 +1,10 @@
+{
+    "name": "victordit/magento1_devtools",
+    "description": "Magento tools for developers",
+    "type": "magento-module",
+    "authors": [
+        {
+            "name": "Victordit"
+        }
+    ]
+}

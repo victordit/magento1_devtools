@@ -1,0 +1,3 @@
+[submodule "src/MagePsycho_Easypathhints"]
+	path = src/MagePsycho_Easypathhints
+	url = git@github.com:victordit/MagePsycho_Easypathhints.git
