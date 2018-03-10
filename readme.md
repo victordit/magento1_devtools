@@ -3,6 +3,7 @@
 Magento tools for developers
 
 ## Required
+* n98-magerun.phar: or more info  about visit [https://github.com/netz98/n98-magerun](https://github.com/netz98/n98-magerun) 
 * Modman: For more info  about visit [https://github.com/colinmollenhour/modman](https://github.com/colinmollenhour/modman)
 
 ## Features
