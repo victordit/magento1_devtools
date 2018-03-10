@@ -45,6 +45,13 @@ and then
 modman clone git@github.com:victordit/magento1_devtools.git
 ```
 
+Modman create the symlikns to .modman/ path in root of the project, if you prefer copy the files you need the follow command:
+```
+modman clone --copy  git@github.com:victordit/magento1_devtools.git
+```
+
+... with "--copy" option before the repo.
+
 That's all.
 
 
