@@ -3,7 +3,7 @@
 Magento tools for developers
 
 ## Required
-* Modman: For more info  about visit (https://github.com/colinmollenhour/modman](https://github.com/colinmollenhour/modman)
+* Modman: For more info  about visit [https://github.com/colinmollenhour/modman](https://github.com/colinmollenhour/modman)
 
 ## Features
 The features inclued in this module are utitlities and modules for developers
