@@ -18,12 +18,13 @@ You need create a config file
 ```
 cp bin/config.sh.dist  bin/config.sh
 ```
+ and then set the params (dbhost,dbuser, etc)
 
 #### Database install 
 
 Run Import 
 ```
-./db_install.sh
+./bin/db_install.sh dumpdb.sql
 ```
 
 Import in dev enviroment a database dump: 
