@@ -4,12 +4,12 @@
 # Install DB on dev enviroment
 #
 
-
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 MAGENTO_DIR="${SCRIPT_DIR}/.."
 COMPOSER_DIR=${MAGENTO_DIR}
 sqlfile=$1
 
+source ${SCRIPT_DIR}/config.sh
 
 if [[ $1 == '--help' || $1 == '-h' ]]
 	then
@@ -20,9 +20,39 @@ fi
 
 if [[ -z $sqlfile  ]]
 	then
-	echo  "A 'file.sql' is required for import a new db"
-	exit;
+	if [[ -z $remote_host || -z $remote_hostuser ||  -z $remote_hostpass || -z remote_dbhost || -z $remote_dbuser ||  -z $remote_dbpass || -z $remote_dbname ]]
+		then
+		echo "The all remotes params in config.sh are required if no pass file.sql like first parameter"
+		exit;
+	fi
+
+	echo "Try dumping db ${remote_dbname} from host ${remote_dbhost} ... "
+	localdbname=${remote_dbname}-$(date +%Y-%m-%d-%H.%M.%S).sql.gz
+	ssh -l ${remote_hostuser} ${remote_host} "mysqldump --u ${remote_dbuser} -p${remote_dbpass} -h ${remote_dbhost} ${remote_dbname} | gzip -3 -c" > ${SCRIPT_DIR}/${localdbname}
+	
+	if [ $? -eq 0 ]; then
+	    echo "${remote_dbname} dumped succesfully from ${remote_host} and placed in : ${SCRIPT_DIR}/${localdbname}"
+	    sqlfile=${localdbname}
+
+	else
+	    echo "Some error occurred when trying to dumping ${remote_dbname} from host ${remote_host}"
+	    exit;
+	fi
 fi
+
+cd ${MAGENTO_DIR}
+
+# if local not exits delete it
+if [ ! -f ${MAGENTO_DIR}/app/etc/local.xml ] ; then
+	echo "File local.xml not exits, try to generate it"
+   	n98-magerun.phar local-config:generate $dbhost $dbuser $dbpass $dbname files admin
+fi
+
+n98-magerun.phar db:drop --force
+echo "Database local deleted succesfully"
+n98-magerun.phar db:create;
+echo "Database local created succesfully"
+
 
 DB_DUMP=${SCRIPT_DIR}/${sqlfile}
 if [ ! -f ${DB_DUMP} ] ; then
@@ -30,18 +60,7 @@ if [ ! -f ${DB_DUMP} ] ; then
 	exit;
 fi
 
-source ${SCRIPT_DIR}/config.sh
 
-cd ${MAGENTO_DIR}
-
-# if db exits delete it
-if [ -f ${MAGENTO_DIR}/app/etc/local.xml ] ; then
-    n98-magerun.phar db:drop --force
-    rm ${MAGENTO_DIR}/app/etc/local.xml
-fi
-
-n98-magerun.phar local-config:generate $dbhost $dbuser $dbpass $dbname files admin
-n98-magerun.phar db:create
 if [ ${sqlfile: -3} == ".gz" ] ; then
 	n98-magerun.phar db:import -c gz ${DB_DUMP}
 else

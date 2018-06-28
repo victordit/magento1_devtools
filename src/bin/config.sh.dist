@@ -1,4 +1,14 @@
 #!/bin/bash
+#data remote for dump from prod or dev
+remote_host=
+remote_hostuser=
+remote_hostpass=
+remote_dbuser=
+remote_dbpass=
+remote_dbname=
+remote_dbhost=
+
+#data for import in local
 dbhost=
 dbuser=
 dbpass=
