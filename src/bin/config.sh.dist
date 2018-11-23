@@ -1,19 +1,21 @@
 #!/bin/bash
-#data remote for dump from prod or dev
-remote_host=
-remote_hostuser=
-remote_hostpass=
-remote_dbuser=
-remote_dbpass=
-remote_dbname=
-remote_dbhost=
+# data remote for dump from prod or dev
+# optional fields
+remote_host="198.0.0.1"
+remote_hostuser="remoteuser"
+remote_hostpass="rpassword"
+remote_dbuser="db_remote"
+remote_dbpass="db_remotepwd"
+remote_dbname="db_remotename"
+remote_dbhost="localhost"
 
 #data for import in local
-dbhost=
-dbuser=
-dbpass=
-dbname=
-baseurl=
+dbhost="localhost"
+dbuser="root"
+dbpass="password"
+dbname="dbname"
+# remember the "trailing slash"
+baseurl="http://mydomain.com/"
 # optionals fields
 adminuser=
 adminpass=

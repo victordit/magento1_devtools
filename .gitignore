@@ -1,1 +1,4 @@
 *.sublime*
+src/bin/config.sh
+*.sql.gz
+*.sql
