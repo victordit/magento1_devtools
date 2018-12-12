@@ -48,6 +48,12 @@ cd ${MAGENTO_DIR}
 # if local not exits delete it
 if [ ! -f ${MAGENTO_DIR}/app/etc/local.xml ] ; then
 	echo "File local.xml not exits, try to generate it"
+
+	if [ ! -f ${MAGENTO_DIR}/app/etc/local.xml.template ] ; then
+		echo "File local.xml.template not exits in project, copy from M. v1.9"
+		cp -f ${SCRIPT_DIR}/local.xml.template  app/etc/local.xml.template
+	fi;
+
    	n98-magerun.phar local-config:generate $dbhost $dbuser $dbpass $dbname files admin
 fi
 
