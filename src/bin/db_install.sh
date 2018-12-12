@@ -1,5 +1,8 @@
 #!/bin/bash
 
+## exit on errors
+set -e
+
 #
 # Install DB on dev enviroment
 #
