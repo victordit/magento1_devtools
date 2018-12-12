@@ -72,6 +72,11 @@ fi
 
 if [ ${sqlfile: -3} == ".gz" ] ; then
 	n98-magerun.phar db:import -c gz ${DB_DUMP}
+elif [ ${sqlfile: -4} == ".tgz" ]; then
+	echo "Foud the .tgz compresed file, uncompress for import"
+	pv ${DB_DUMP} | tar -xz
+
+	n98-magerun.phar db:import -c tgz ${DB_DUMP}
 else
 	n98-magerun.phar db:import ${DB_DUMP}
 fi
