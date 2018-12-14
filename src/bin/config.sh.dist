@@ -16,6 +16,16 @@ dbpass="password"
 dbname="dbname"
 # remember the "trailing slash"
 baseurl="http://mydomain.com/"
+
+#
 # optionals fields
-adminuser=
-adminpass=
+#
+
+#compile only these fields for change password for exist user
+adminuser="admin"
+adminpass="newpassword"
+
+#compile also these fields for create user admin
+adminemail="email@mydomain.com"
+adminfirstname="Jhon"
+adminlastname="Carter"

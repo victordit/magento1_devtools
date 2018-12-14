@@ -94,13 +94,24 @@ n98-magerun.phar config:set web/unsecure/base_url ${baseurl}
 n98-magerun.phar config:set admin/url/use_custom 0
 n98-magerun.phar config:set admin/url/use_custom_path 0
 
-if [[ $adminuser && $adminpass ]] ; then
+if [[ $adminuser && $adminpass && $adminemail &&  $adminfirstname && $adminlastname ]] ; then
+	
 	echo -e ""
-	echo -e "\033[37;44m                  \033[0m"
-	echo -e "\033[37;44m  Admin Password  \033[0m"
-	echo -e "\033[37;44m                  \033[0m"
+	echo -e "\033[37;44m                     \033[0m"
+	echo -e "\033[37;44m  Create User Admin  \033[0m"
+	echo -e "\033[37;44m                     \033[0m"
+	echo -e ""
+	n98-magerun.phar admin:user:create ${adminuser} ${adminemail} ${adminpass} ${adminfirstname} ${adminlastname} Administrators
+
+elif [[ $adminuser && $adminpass ]]; then
+
+	echo -e ""
+	echo -e "\033[37;44m                         \033[0m"
+	echo -e "\033[37;44m  Chenge Admin Password  \033[0m"
+	echo -e "\033[37;44m                         \033[0m"
 	echo -e ""
 	n98-magerun.phar admin:user:change-password ${adminuser} ${adminpass}
+
 fi
 
 echo -e ""
