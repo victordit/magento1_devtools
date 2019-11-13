@@ -91,6 +91,8 @@ echo -e "\033[37;44m            \033[0m"
 echo -e ""
 n98-magerun.phar config:set web/secure/base_url ${baseurl}
 n98-magerun.phar config:set web/unsecure/base_url ${baseurl}
+domain=$(echo "$baseurl" | sed -e 's|^[^/]*//||' -e 's|/.*$||')
+n98-magerun.phar config:set web/cookie/cookie_domain ${domain}
 n98-magerun.phar config:set admin/url/use_custom 0
 n98-magerun.phar config:set admin/url/use_custom_path 0
 
